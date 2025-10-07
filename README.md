@@ -64,6 +64,8 @@ To provide easy and smooth interaction between doctors and patients through inno
 
 ---
 
+![alt text](image.png)
+
 ## 🛠 Tech Stack
 
 ### Frontend
