@@ -4,7 +4,7 @@
 
 **Bridging Healthcare Through Technology**
 
-*Tele* (Telemedicine) + *Sana* (Latin: Health & Life)
+_Tele_ (Telemedicine) + _Sana_ (Latin: Health & Life)
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -33,26 +33,31 @@ To provide easy and smooth interaction between doctors and patients through inno
 ### Core Modules
 
 - **🤖 AI Chatbot Diagnosis**: Intelligent symptom analysis engine with risk level assessment
+
   - Low Risk: Suggests OTC medicines and precautions
   - Medium Risk: Recommends specialists with real-time availability
   - High Risk: Emergency alert with ER directions
 
 - **👤 User Management**: Secure authentication and profile management
+
   - Personal health passbook
   - Medical history tracking
   - Appointment management
 
 - **👨‍⚕️ Doctor Recommendation**: Smart doctor matching based on symptoms and specialization
+
   - Real-time availability checking
   - Appointment booking system
   - Doctor profiles and qualifications
 
 - **💊 Prescription Management**: Digital prescription handling with OCR
+
   - Upload and read prescriptions
   - Prescription history
   - Medicine information database
 
 - **📹 Video Consultation**: Integrated telemedicine consultations
+
   - Real-time video appointments
   - Doctor confirmation system
   - Optional teleconsultation support
@@ -69,16 +74,19 @@ To provide easy and smooth interaction between doctors and patients through inno
 ## 🛠 Tech Stack
 
 ### Frontend
+
 - **HTML5 & CSS3**: Semantic markup and modern styling
 - **JavaScript (ES6+)**: Core programming language
 - **React**: Component-based UI library
 - **Next.js**: React framework for production
 
 ### Backend
+
 - **Node.js**: Server-side JavaScript runtime
-- **Express.js**: Web application framework *(recommended)*
+- **Express.js**: Web application framework _(recommended)_
 
 ### Database
+
 - **MySQL**: Relational database for structured data
   - User information
   - Doctor profiles
@@ -89,9 +97,10 @@ To provide easy and smooth interaction between doctors and patients through inno
   - Session data
 
 ### AI & Integration
+
 - **AI API**: Natural language processing for symptom analysis
 - **OCR Engine**: Optical character recognition for prescription reading
-- **Video SDK**: WebRTC-based video consultation *(to be selected)*
+- **Video SDK**: WebRTC-based video consultation _(to be selected)_
 
 ---
 
@@ -115,4 +124,6 @@ To provide easy and smooth interaction between doctors and patients through inno
 
 ### Relational Database (MySQL)
 
-#### Users Table
+## Contributors
+
+1: Shriti Negi
