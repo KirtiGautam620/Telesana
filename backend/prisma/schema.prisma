@@ -1,107 +1,130 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "mysql"
+  url       = env("DATABASE_URL")
 }
 
-model Patient{
-  id String @id @default(uuid())
-  username String
-  name String?
-  email String @unique
-  phone String? @unique
-  password String
-  createdAt DateTime @default(now())
-  healthPassbook HealthPassbook?
-  appointments Appointment[]
-  prescriptions Prescription[]
+
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
 }
 
-model Doctor{
-  id String @id @default(uuid())
-  name String
-  specialisation String
-  qualification String
-  experience Int
-  availableSlots AppointmentSlot[]
-  appointments Appointment[]
-  prescriptions Prescription[]
-}
-
-model AppointmentSlot{
-  id String @id @default(uuid())
-  doctor Doctor @relation(fields: [doctorId], references: [id])
-  doctorId String
-  startTime DateTime
-  endTime DateTime
-  isBooked Boolean @default(false)
-}
-
-model Appointment{
-  id String @id @default(uuid())
-  patient Patient @relation(fields: [patientId], references: [id])
-  patientId String
-  doctor Doctor @relation(fields: [doctorId], references: [id])
-  doctorId String
-  mode AppointmentMode
-  dateTime DateTime
-  status AppointmentStatus @default(SCHEDULED)
-  prescription Prescription?
-  createdAt DateTime @default(now())
-}
-enum AppointmentMode{
+enum AppointmentMode {
   VIDEO
   IN_PERSON
 }
-enum AppointmentStatus{
+
+enum AppointmentStatus {
   SCHEDULED
   COMPLETED
   CANCELLED
 }
 
-model Prescription{
-  id String @id @default(uuid())
-  patient Patient @relation(fields: [patientId], references: [id])
-  patientId String
-  doctor Doctor @relation(fields: [doctorId], references: [id])
-  doctorId String
-  appointment Appointment? @relation(fields: [appointmentId], references: [id])
-  appointmentId String? @unique
-  medicines Json
-  createdAt DateTime @default(now())
-  reminders Reminder[]
+enum Gender {
+  M
+  F
 }
 
-model Reminder{
-  id String @id @default(uuid())
-  prescription Prescription @relation(fields: [prescriptionId], references: [id])
+
+model User {
+  id        String    @id @default(uuid())
+  username  String    @unique
+  email     String    @unique
+  password  String    
+  patient   Patient?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+
+
+
+model Patient {
+  id        String    @id @default(uuid())
+  firstName String
+  lastName  String
+  phone     String?   @unique
+  gender    Gender
+  dob       DateTime  @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt 
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id])
+  healthPassbook HealthPassbook?
+  appointments   Appointment[]
+  prescriptions  Prescription[]
+}
+
+
+
+model HealthPassbook {
+  id          String        @id @default(uuid())
+  patient     Patient       @relation(fields: [patientId], references: [id])
+  patientId   String        @unique
+  healthData  Json
+  riskLevel   RiskLevel
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Doctor {
+  id             String            @id @default(uuid())
+  doctor_name    String
+  specialisation String
+  qualification  String
+  experience     Int
+  fees           Decimal           @db.Decimal(10, 2)
+  availableSlots AppointmentSlot[]
+  appointments   Appointment[]
+  prescription   Prescription[]
+}
+
+model Appointment {
+  id              String            @id @default(uuid())
+  patientId       String
+  patient         Patient           @relation(fields: [patientId], references: [id])
+  doctorId        String
+  doctor          Doctor            @relation(fields: [doctorId], references: [id])
+  mode            AppointmentMode
+  appointmentTime DateTime
+  status          AppointmentStatus
+  prescriptions   Prescription[]
+  createdAt       DateTime          @default(now())
+}
+
+model AppointmentSlot {
+  id        String   @id @default(uuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  startTime DateTime
+  endTime   DateTime
+  isBooked  Boolean  @default(false)
+}
+
+model Prescription {
+  id            String      @id @default(uuid())
+  patientId     String
+  patient       Patient     @relation(fields: [patientId], references: [id])
+  doctorId      String
+  doctor        Doctor      @relation(fields: [doctorId], references: [id])
+  appointmentId String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  medicines     String
+  createdAt     DateTime    @default(now())
+  reminders     Reminder[]
+}
+
+model Reminder {
+  id             String       @id @default(uuid())
   prescriptionId String
-  message String
-  remindAt DateTime
-  sent Boolean @default(false)
-}
-
-model HealthPassbook{
-  id String @id @default(uuid())
-  patient Patient @relation(fields: [patientId], references: [id])
-  patientId String @unique
-  healthData Json
-  riskLevel RiskLevel
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-enum RiskLevel{
-  LOW 
-  MEDIUM
-  HIGH
+  prescription   Prescription @relation(fields: [prescriptionId], references: [id])
+  message        String
+  remindAt       DateTime
+  sent           Boolean      @default(false)
 }
