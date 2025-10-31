@@ -67,64 +67,44 @@ To provide easy and smooth interaction between doctors and patients through inno
   - Medication schedules
   - Follow-up notifications
 
----
-
-![alt text](image.png)
-
+## Tech Stack
 ## 🛠 Tech Stack
 
 ### Frontend
-
-- **HTML5 & CSS3**: Semantic markup and modern styling
-- **JavaScript (ES6+)**: Core programming language
-- **React**: Component-based UI library
-- **Next.js**: React framework for production
+- HTML5 & CSS3
+- JavaScript (ES6+)
+- React
+- Next.js
 
 ### Backend
-
-- **Node.js**: Server-side JavaScript runtime
-- **Express.js**: Web application framework _(recommended)_
+- Node.js
+- Express.js
 
 ### Database
-
-- **MySQL**: Relational database for structured data
-  - User information
-  - Doctor profiles
-  - Appointment records
-- **MongoDB**: NoSQL database for unstructured data
-  - Medical data
-  - Chat logs
-  - Session data
-
-### AI & Integration
-
-- **AI API**: Natural language processing for symptom analysis
-- **OCR Engine**: Optical character recognition for prescription reading
-- **Video SDK**: WebRTC-based video consultation _(to be selected)_
+- MySQL (structured data)
 
 ---
 
-## 📱 Application Workflow
-
-![Application Workflow][attached_image:1]
-
-### User Journey
-
-1. **Start**: Patient opens the TeleSana app
-2. **Symptom Entry**: User enters symptoms via form or chatbot
-3. **AI Analysis**: Symptom analysis engine processes input
-4. **Risk Assessment**: System determines risk level
-   - **Low Risk** → Suggest OTC medicines → Follow-up reminder
-   - **Medium Risk** → Recommend specialist → Book appointment → Doctor confirmation → Prescription/Treatment → Follow-up notifications
-   - **High Risk** → Emergency alert ("Go to ER / Call Ambulance")
-
+### Steps
+1. Clone the repository
+```bash
+git clone https://github.com/TeleHealthAi/Telesana.git
+cd Telesana
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run Backend Server
+```bash
+npm run server
+```
+4. Run Frontend 
+```bash
+npm run dev
+```
+5. Open in your Browser
+```bash
+http://localhost:3000
+```
 ---
-
-## 🗂 Database Schema
-
-### Relational Database (MySQL)
-
-## Contributors
-
-1: Shriti Negi
-2. Sayuri Janbandhu
