@@ -127,3 +127,4 @@ To provide easy and smooth interaction between doctors and patients through inno
 ## Contributors
 
 1: Shriti Negi
+2. Sayuri Janbandhu
