@@ -1,9 +1,12 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+// const {PrismaClient} = require('@prisma/client')
+// const prisma = new PrismaClient()
 const prisma =require('../utils/prisma.js')
 
 async function signup(req, res) {
+    console.log("sign up success")
     const {username, email, password} = req.body
     try{
         const existingUser = await prisma.user.findUnique({where: {email}})
@@ -13,6 +16,7 @@ async function signup(req, res) {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
+        console.log("hashed",hashedPassword)
         const newUser = await prisma.user.create({
             data: {username, email, password: hashedPassword}
         })
@@ -25,7 +29,9 @@ async function signup(req, res) {
 }
 
 async function login(req, res) {
+    console.log("logged in")
     const {email, password} = req.body
+    
     try{
         const existingUser = await prisma.user.findUnique({where: {email}})
         if (!existingUser){
@@ -44,6 +50,7 @@ async function login(req, res) {
         console.error(error)
         return res.status(500).json({error: "Something went wrong"})
     }
+    
 } 
 
 module.exports = {signup, login}
