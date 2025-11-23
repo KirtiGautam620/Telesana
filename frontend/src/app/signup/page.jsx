@@ -2,19 +2,17 @@
 import React,{useState,useEffect} from 'react'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
-import axios from "axios"
 import "./SignupPage.css"
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { easeOut } from 'framer-motion'
 const SignupPage = () => {
-    const [user,setUser]=useState({
-        email:"",password:"",username:""
-    })
+    const [user,setUser]=useState({email:"",password:"",username:""})
     const [agree,setAgree]=useState(false)
     const onSignup=async(e)=>{
         e.preventDefault()
         const email=user.email.trim()
+        const username=user.username.trim()
+        const password=user.password.trim()
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
         // const mobileRegex=/^[0-9]{10}$/
         if(!email || !user.username || !user.password){
@@ -29,15 +27,13 @@ const SignupPage = () => {
             toast.error("Please agree to terms")
             return
         }
-
-        toast.success("User Created Successfully")
-        
-        const response=await fetch("http://localhost:3001/api/auth/signup",{
+        try{
+            const response=await fetch("http://localhost:3001/api/auth/signup",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(user)
+            body:JSON.stringify({email,username,password})
         })
 
         const data=await response.json()
@@ -48,34 +44,37 @@ const SignupPage = () => {
             localStorage.setItem("token",data.token)
             localStorage.setItem("user",JSON.stringify(data.user))
         }else{
-            toast.error("User Not Created")
-            return 
+            toast.error("SignUp Failed")
         }
     }
-   
+    catch(err){
+        toast.error("Something went wrong")
+        console.log(err)
+    }  
+}   
 
   return (
     <div className='login-container'>
         <div className='login-box'>
         <h1>Signup</h1>
-        <form>
+        <form onSubmit={onSignup}>
         <label className='label' htmlFor='username'>Full Name</label>
-        <input className={"input"} type="text" placeholder='Full Name' name="username" id="username" onChange={(e)=>setUser({...user,username:e.target.value})} />
+        <input className={"input"} type="text" placeholder='Full Name' name="username" id="username" value={user.username} onChange={(e)=>setUser({...user,username:e.target.value})} />
         <label className='label' htmlFor='email' >Email</label>
-        <input className={"input"} type="text" placeholder="Email" name="email" id="email" onChange={(e)=>setUser({...user,email:e.target.value})} />
+        <input className={"input"} type="text" placeholder="Email" name="email" id="email" value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})} />
         <label className='label' htmlFor='password'>Enter Password</label>
-        <input className={"input"} type="password"  placeholder="Password" name="password" id="password" onChange={(e)=>setUser({...user,password:e.target.value})} />
+        <input className={"input"} type="password"  placeholder="Password" name="password" value={user.password} id="password" onChange={(e)=>setUser({...user,password:e.target.value})} />
                 <FormControlLabel
         sx={{color:"grey"}}
         control={<Checkbox checked={agree} onChange={(e)=>setAgree(e.target.checked)} />}
         label="I agree to terms"
         />
-        <button className='button' onClick={onSignup}>Signup</button>
+        <button className='button' type='submit'>Signup</button>
         </form>
         <Link href="/login">Login</Link>
         </div>
         <div>
-            <img className='image' src="./image.png"/>
+            <img className='image' src="./img.png"/>
         </div>
     </div>
   )

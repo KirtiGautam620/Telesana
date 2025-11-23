@@ -7,7 +7,7 @@ const prisma =require('../utils/prisma.js')
 
 async function signup(req, res) {
     console.log("sign up success")
-    const {username, email, password} = req.body
+    const {username,email,password} = req.body
     try{
         const existingUser = await prisma.user.findUnique({where: {email}})
 
@@ -20,7 +20,8 @@ async function signup(req, res) {
         const newUser = await prisma.user.create({
             data: {username, email, password: hashedPassword}
         })
-        return res.status(201).json({message: "Registration successful", user: {id: newUser.id, username: newUser.username, email: newUser.email}})
+        const token=jwt.sign({id:newUser.id},process.env.JWT_SECRET,{expiresIn:'7d'})
+        return res.status(201).json({message: "Registration successful",token,user: {id: newUser.id, username: newUser.username, email: newUser.email}})
 
     } catch(error){
         console.error(error)
