@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-// import DashboardLink from "./dashboardLink/dashboardLink";
+
 
 import styles from "./sidebar.module.css"
 import {
@@ -13,7 +13,7 @@ import {
   MdHealthAndSafety,
   MdPeople,
 } from "react-icons/md";
-// import { TbReportSearch } from "react-icons/tb";
+
 import DashboardLink from './dashboardLink/dashboardLink';
 
 const dashboardItems = [
@@ -62,7 +62,7 @@ const dashboardItems = [
 
 
 const Sidebar = async () => {
-  // const { user } = await auth();
+  
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -74,8 +74,7 @@ const Sidebar = async () => {
           height="50"
         />
         <div className={styles.userDetail}>
-          {/* <span className={styles.username}>{user.username}</span> */}
-          {/* <span className={styles.userTitle}>Administrator</span> */}
+         
         </div>
       </div>
       <ul className={styles.list}>
@@ -88,17 +87,7 @@ const Sidebar = async () => {
           </li>
         ))}
       </ul>
-      {/* <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      > */}
-        {/* <button className={styles.logout}>
-          <MdLogout />
-          Logout
-        </button>
-      </form> */}
+     
     </div>
   );
 };

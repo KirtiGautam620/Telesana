@@ -1,19 +1,17 @@
 import styles from "./upcoming.module.css";
 import Image from "next/image";
 
-// --- SIMULATING DATABASE FETCH ---
-// In a real app, you would import 'prisma' here
+
 const fetchAppointments = async () => {
-  // Simulate network delay
+ 
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  // Return mock data that matches your DB schema
   return [
     {
       id: 1,
       doctorName: "Dr. Sarah Smith",
       specialty: "Cardiology",
-      avatar: "/noavatar.png", // Make sure this image exists in your /public folder
+      avatar: "/noavatar.png", 
       type: "Cardiology",
       date: "Nov 28, 10:00 AM",
       status: "Confirmed",

@@ -13,7 +13,7 @@ const Rightbar = () => {
     
     <div className={styles.container}>
    
-      {/* <h1 style={{color: 'red', fontSize: '30px'}}>I AM THE NEW CALENDAR RIGHTBAR</h1>  */}
+      
       
       <div className={styles.item}>
         <div className={styles.bgContainer}>
