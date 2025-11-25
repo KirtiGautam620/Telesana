@@ -1,0 +1,71 @@
+.container {
+    background-color: #1A1F37; /* Dark dashboard background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Space between this and appointments */
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #A0AEC0;
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th {
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+    color: #A0AEC0;
+    font-weight: 500;
+  }
+  
+  .table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #2D3748; /* Subtle separator line */
+  }
+  
+  /* Remove border from last row */
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .medicine {
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .text {
+    color: #CBD5E0;
+    font-size: 14px;
+  }
+  
+  /* --- The Status Badges --- */
+  .badge {
+    padding: 5px 12px;
+    border-radius: 15px; /* Pill shape */
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+  }
+  
+  /* Green (Active/Good) */
+  .active, .good {
+    background-color: rgba(79, 209, 197, 0.2); /* Transparent Green */
+    color: #4FD1C5; /* Bright Teal Text */
+    border: 1px solid #4FD1C5;
+  }
+  
+  /* Red/Orange (Warning/Refill Needed) */
+  .warning {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+    border: 1px solid #F87171;
+  }

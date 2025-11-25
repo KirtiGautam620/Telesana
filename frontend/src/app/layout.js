@@ -1,11 +1,37 @@
+// import { Inter } from "next/font/google";
+// import "./ui/globals.css";
+// import Navbar from "@/components/Navbar"; // Ensure this import is here
+// import { Toaster } from "react-hot-toast";
+
+// const inter = Inter({ subsets: ["latin"] });
+
+// export const metadata = {
+//   title: "Telesana",
+//   description: "A Healthcare Management System",
+// };
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body className={inter.className}>
+        
+//         {/* Uncommented the Navbar below */}
+//         <Navbar />
+
+//         <main>{children}</main>
+//         <Toaster position="top-right" reverseOrder={false} />
+//       </body>
+//     </html>
+//   );
+// }
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import "./ui/globals.css";
+// import Navbar from "@/components/Navbar"; <--- REMOVE THIS
+import NavbarWrapper from "./ui/NavbarWrapper"; // <--- ADD THIS
 import { Toaster } from "react-hot-toast";
-import Footer from "@/components/Footer";
-const inter = Inter({
-  subsets: ["latin"],
-});
+
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata = {
   title: "Telesana",
   description: "A Healthcare Management System",
@@ -14,21 +40,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={inter.className}>
         
-        {/* Header/Nav */}
-        <Navbar />
+        {/* Use the wrapper instead of the direct component */}
+        <NavbarWrapper />
 
-        {/* MAIN CONTENT */}
         <main>{children}</main>
-
-        {/* Toast (optional) */}
         <Toaster position="top-right" reverseOrder={false} />
-        <Footer/>
-        {/* Footer */}
-        {/* <footer className="text-center py-5 bg-gray-100 text-gray-600">
-          <p>Telesana</p>
-        </footer> */}
       </body>
     </html>
   );
