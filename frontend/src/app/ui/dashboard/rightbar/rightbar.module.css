@@ -1,0 +1,119 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .item {
+    background-color: #1A1F37;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #A0AEC0;
+    margin-bottom: 15px;
+  }
+  
+ 
+  .calendar {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: sans-serif;
+    color: #fff;
+  }
+  
+  .calendar button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .calendar :global(.react-calendar__navigation__label) {
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .calendar :global(.react-calendar__navigation button:hover) {
+    background-color: #2D3748 !important;
+    border-radius: 5px;
+  }
+
+  .calendar :global(.react-calendar__month-view__weekdays) {
+    text-align: center;
+    text-decoration: none;
+    color: #718096;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .calendar :global(.react-calendar__month-view__weekdays__weekday abbr) {
+    text-decoration: none;
+  }
+  
+  .calendar :global(.react-calendar__tile) {
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .calendar :global(.react-calendar__tile:enabled:hover),
+  .calendar :global(.react-calendar__tile:enabled:focus) {
+    background-color: #2D3748;
+    border-radius: 8px;
+  }
+  
+  .calendar :global(.react-calendar__tile--now) {
+    background: transparent;
+    color: #8B5CF6; 
+  }
+  
+  .calendar :global(.react-calendar__tile--active),
+  .calendar :global(.react-calendar__tile--active:enabled:hover),
+  .calendar :global(.react-calendar__tile--active:enabled:focus) {
+    background: #6D28D9;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(109, 40, 217, 0.5);
+  }
+  
+  
+  .notification {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .iconContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .notifTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .notifTime {
+    font-size: 12px;
+    color: #A0AEC0;
+  }
