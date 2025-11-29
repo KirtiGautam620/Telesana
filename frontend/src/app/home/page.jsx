@@ -2,6 +2,7 @@
 import Image from "next/image";
 import doctorsImg from "../../../public/home.png";
 import Link from "next/link";
+import Chatbot from "../../components/Chatbot";
 import "./HomePage.css";
 
 export default function HospitalHome() {
@@ -42,6 +43,9 @@ export default function HospitalHome() {
           />
         </div>
       </div>
+
+      {/* MediBuddy Chatbot Widget */}
+      <Chatbot />
     </section>
   );
 }
