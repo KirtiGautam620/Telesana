@@ -1,40 +1,47 @@
 .container {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #182237; 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .title {
-    color: #b7bac1; 
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-  
-  .menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #2e374a;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  .input {
-    background-color: transparent;
-    border: none;
-    color: white; 
-  } 
-  
-  .icons {
-    display: flex;
-    gap: 20px;
-  }
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff; /* primary color changed to white */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #107ecc; /* text color changed to blue for contrast */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* optional subtle shadow */
+}
+
+.title {
+  color: #107ecc; /* primary blue text for title */
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #e6f0fb; /* light blue background for search input */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  color: #107ecc; /* input text in primary blue */
+}
+
+.input::placeholder {
+  color: #a0cfff; /* lighter blue placeholder */
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
+  color: #107ecc; /* icons in blue */
+}
