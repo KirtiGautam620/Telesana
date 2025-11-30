@@ -1,0 +1,44 @@
+.details-container {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.details-container h2 {
+    color: #333;
+}
+
+.details-card {
+    margin-top: 15px;
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 22px;
+}
+
+.details-card h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: pink;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.detail-item label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.detail-item p {
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+}
