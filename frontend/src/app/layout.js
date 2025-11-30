@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./ui/globals.css";
 
 import NavbarWrapper from "./ui/NavbarWrapper";
-import Footer from "../components/Footer";
+import ConditionalFooter from "../components/ConditionalFooter";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
         <NavbarWrapper />
 
         <main>{children}</main>
-        
-        <Footer />
+
+        <ConditionalFooter />
         <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
