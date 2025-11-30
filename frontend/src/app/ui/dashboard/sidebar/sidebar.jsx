@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from "next/image";
-// import DashboardLink from "./dashboardLink/dashboardLink";
 
 import styles from "./sidebar.module.css"
 import {
@@ -49,7 +48,7 @@ const dashboardItems = [
       },
       {
         title: "Logout",
-        path: "/dashboard/help",
+        path: "/dashboard/logout",
         icon: <MdLogout />,
       },
     ],
