@@ -32,6 +32,9 @@ enum Gender {
 }
 
 
+
+
+
 model User {
   id        String    @id @default(uuid())
   username  String    @unique
@@ -128,3 +131,5 @@ model Reminder {
   remindAt       DateTime
   sent           Boolean      @default(false)
 }
+
+
