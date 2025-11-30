@@ -71,7 +71,7 @@ const SignupPage = () => {
         />
         <button className='button' type='submit'>Signup</button>
         </form>
-        <Link href="/login">Login</Link>
+        <Link href="/login" className='login'>Login</Link>
         </div>
         <div>
             <img className='image' src="./img.png"/>

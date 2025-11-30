@@ -75,3 +75,7 @@ input:hover{
     height: 500px;
     width: 600px;
 }
+.login{
+    color: #678bee;
+    font-weight: bold;
+}
