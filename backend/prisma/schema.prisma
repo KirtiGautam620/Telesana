@@ -76,7 +76,7 @@ model HealthPassbook {
   updatedAt   DateTime      @updatedAt
 }
 
-model Doctor {
+model Doctors {
   id             String            @id @default(uuid())
   doctor_name    String
   specialisation String
