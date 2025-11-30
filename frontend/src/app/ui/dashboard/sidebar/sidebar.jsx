@@ -53,7 +53,7 @@ const dashboardItems = [
       },
       {
         title: "Logout",
-        path: "/dashboard/help",
+        path: "/dashboard/logout",
         icon: <MdLogout />,
       },
     ],
