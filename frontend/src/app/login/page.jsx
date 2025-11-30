@@ -87,7 +87,7 @@ const LoginPage = () => {
                 
             
                 <div style={{ marginTop: "20px", textAlign: "center", color: "#555" }}>
-                    <p>Don't have an account? <Link href="/signup" style={{ color: "#6299ec", fontWeight: "bold" }}>Sign Up</Link></p>
+                    <p>Don't have an account? <Link href="/signup" style={{ color: "#678bee", fontWeight: "bold" }}>Sign Up</Link></p>
                 </div>
             </div>
             <div>
