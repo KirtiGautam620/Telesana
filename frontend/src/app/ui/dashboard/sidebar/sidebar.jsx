@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-
+// import DashboardLink from "./dashboardLink/dashboardLink";
 
 import styles from "./sidebar.module.css"
 import {
@@ -35,11 +35,7 @@ const dashboardItems = [
         path: "/dashboard/Appointments",
         icon: <MdSchedule />,
       },
-      {
-        title: "Health Report",
-        path: "/dashboard/HealthSummary",
-        icon:<MdHealthAndSafety />,
-      },
+     
     ],
   },
   
@@ -53,7 +49,7 @@ const dashboardItems = [
       },
       {
         title: "Logout",
-        path: "/dashboard/logout",
+        path: "/dashboard/help",
         icon: <MdLogout />,
       },
     ],
@@ -74,7 +70,6 @@ const Sidebar = async () => {
           height="50"
         />
         <div className={styles.userDetail}>
-         
         </div>
       </div>
       <ul className={styles.list}>
@@ -87,7 +82,7 @@ const Sidebar = async () => {
           </li>
         ))}
       </ul>
-     
+      
     </div>
   );
 };

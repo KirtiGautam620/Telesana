@@ -46,14 +46,13 @@ const Dashboard = () => {
     <div className={styles.wrapper}>
 
       <div className={styles.main}>
-        
 
         <div className={styles.cards}>
           {cards.map((item) => (
             <Card item={item} key={item.title} />
           ))}
         </div>
-   
+
         <Upcoming />
 
         <Prescriptions/>
@@ -61,7 +60,6 @@ const Dashboard = () => {
 
       </div>
 
-  
       <div className={styles.side}>
         <Rightbar />
       </div>
