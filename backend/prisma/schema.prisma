@@ -26,9 +26,10 @@ enum AppointmentStatus {
   CANCELLED
 }
 
-enum Gender {
-  M
-  F
+enum gender {
+  Male
+  Female
+  Other
 }
 
 
@@ -53,7 +54,7 @@ model Patient {
   fullName String
   // lastName  String
   phone     String?   @unique
-  gender    Gender
+  gender    gender
   dob       DateTime  @db.Date
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt 
@@ -76,7 +77,7 @@ model HealthPassbook {
   updatedAt   DateTime      @updatedAt
 }
 
-model Doctors {
+model Doctor {
   id             String            @id @default(uuid())
   doctor_name    String
   specialisation String
