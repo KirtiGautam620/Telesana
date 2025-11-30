@@ -1,0 +1,29 @@
+.card {
+    background: #1e2738;
+    padding: 14px;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .scheduled {
+    background: #ffc107;
+    color: black;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+  
+  .completed {
+    background: #4caf50;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+  
+  .cancelled {
+    background: #dc3545;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+  
