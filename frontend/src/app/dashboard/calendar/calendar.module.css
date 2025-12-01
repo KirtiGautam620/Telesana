@@ -1,0 +1,248 @@
+.container {
+  padding: 20px;
+  max-width: 1400px;
+  display: flex;
+  gap: 20px;
+}
+
+.calendarSection {
+  flex: 2;
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #337af5;
+  margin-bottom: 16px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navButton {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  color: #374151;
+}
+
+.navButton:hover {
+  background-color: #e5e7eb;
+}
+
+.monthName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  min-width: 200px;
+  text-align: center;
+}
+
+.calendar {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.weekDay {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: #e5e7eb;
+}
+
+.day {
+  background-color: white;
+  min-height: 100px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.day:hover {
+  background-color: #f9fafb;
+}
+
+.emptyDay {
+  background-color: #f9fafb;
+  min-height: 100px;
+}
+
+.dayNumber {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.today {
+  background-color: #eff6ff !important;
+  border: 2px solid #337af5;
+}
+
+.today .dayNumber {
+  color: #337af5;
+  font-weight: 700;
+}
+
+.hasAppointment {
+  background-color: #f0fdf4;
+}
+
+.appointmentIndicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.appointmentDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #111827;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 200px;
+  margin-bottom: 8px;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #111827;
+}
+
+.tooltipTitle {
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+}
+
+.tooltipDetail,
+.tooltipTime,
+.tooltipMode {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.appointmentDetails {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.appointmentDetails h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.noAppointments {
+  text-align: center;
+  color: #6b7280;
+  padding: 40px 20px;
+}
+
+.appointmentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.appointmentCard {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 4px solid #337af5;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.time {
+  font-size: 14px;
+  color: #337af5;
+  font-weight: 500;
+}
+
+.appointmentCard p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.statusBadge {
+  background-color: #16a34a;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}

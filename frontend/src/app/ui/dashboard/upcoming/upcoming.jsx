@@ -1,45 +1,19 @@
 import styles from "./upcoming.module.css";
 import Image from "next/image";
 
+const Upcoming = ({ appointments = [] }) => {
+  const upcomingAppointments = appointments
+    .filter(apt => apt.status === 'SCHEDULED')
+    .slice(0, 5);
 
-const fetchAppointments = async () => {
- 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return [
-    {
-      id: 1,
-      doctorName: "Dr. Sarah Smith",
-      specialty: "Cardiology",
-      avatar: "/noavatar.png", 
-      type: "Cardiology",
-      date: "Nov 28, 10:00 AM",
-      status: "Confirmed",
-    },
-    {
-      id: 2,
-      doctorName: "Dr. John Doe",
-      specialty: "Dentist",
-      avatar: "/noavatar.png",
-      type: "Checkup",
-      date: "Dec 05, 02:30 PM",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      doctorName: "Dr. Emily Blunt",
-      specialty: "Neurology",
-      avatar: "/noavatar.png",
-      type: "Consultation",
-      date: "Dec 12, 11:00 AM",
-      status: "Cancelled",
-    },
-  ];
-};
-
-const Upcoming = async () => {
-  // Fetch data directly in the component (Server Component feature)
-  const appointments = await fetchAppointments();
+  if (upcomingAppointments.length === 0) {
+    return (
+      <div className={styles.container}>
+        <h2 className={styles.title}>Upcoming Appointments</h2>
+        <p className={styles.noData}>No upcoming appointments</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -48,47 +22,37 @@ const Upcoming = async () => {
         <thead>
           <tr>
             <th>Doctor</th>
-            <th>Type</th>
+            <th>Specialization</th>
             <th>Date</th>
-            <th>Status</th>
+            <th>Mode</th>
           </tr>
         </thead>
         <tbody>
-          {appointments.map((apt) => (
+          {upcomingAppointments.map((apt) => (
             <tr key={apt.id}>
-              {/* Column 1: Doctor Info */}
               <td>
                 <div className={styles.doctor}>
                   <Image
-                    src={apt.avatar}
-                    alt={apt.doctorName}
+                    src="/noavatar.png"
+                    alt={apt.doctor.doctor_name}
                     width={40}
                     height={40}
                     className={styles.userImage}
                   />
                   <div className={styles.doctorDetails}>
-                    <span className={styles.doctorName}>{apt.doctorName}</span>
-                    <span className={styles.doctorSpecialtySmall}>
-                      ({apt.specialty})
+                    <span className={styles.doctorName}>
+                      Dr. {apt.doctor.doctor_name}
                     </span>
                   </div>
                 </div>
               </td>
-
-              {/* Column 2: Type */}
-              <td className={styles.type}>{apt.type}</td>
-
-              {/* Column 3: Date */}
-              <td className={styles.date}>{apt.date}</td>
-
-              {/* Column 4: Status Badge */}
+              <td className={styles.type}>{apt.doctor.specialisation}</td>
+              <td className={styles.date}>
+                {new Date(apt.appointmentTime).toLocaleString()}
+              </td>
               <td>
-                <span
-                  className={`${styles.status} ${
-                    styles[apt.status.toLowerCase()]
-                  }`}
-                >
-                  {apt.status}
+                <span className={`${styles.status} ${styles.confirmed}`}>
+                  {apt.mode.replace('_', ' ')}
                 </span>
               </td>
             </tr>

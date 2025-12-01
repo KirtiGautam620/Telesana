@@ -1,11 +1,13 @@
 "use client"
 import React,{useState,useEffect} from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import "./SignupPage.css"
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 const SignupPage = () => {
+    const router = useRouter()
     const [user,setUser]=useState({email:"",password:"",username:""})
     const [agree,setAgree]=useState(false)
     const onSignup=async(e)=>{
@@ -28,7 +30,7 @@ const SignupPage = () => {
             return
         }
         try{
-            const response=await fetch("http://localhost:3001/api/auth/signup",{
+            const response=await fetch("http://localhost:4000/api/auth/signup",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -38,11 +40,12 @@ const SignupPage = () => {
 
         const data=await response.json()
         console.log(data)
-        
+
         if(response.ok){
             toast.success("User Created Successfully")
             localStorage.setItem("token",data.token)
             localStorage.setItem("user",JSON.stringify(data.user))
+            router.push('/dashboard')
         }else{
             toast.error("SignUp Failed")
         }

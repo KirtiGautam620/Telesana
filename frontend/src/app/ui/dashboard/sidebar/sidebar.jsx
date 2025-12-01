@@ -1,16 +1,14 @@
-import React from 'react'
+"use client";
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
-
 import styles from "./sidebar.module.css"
 import {
   MdDashboard,
-  MdSupervisedUserCircle,
-  MdAnalytics,
   MdOutlineSettings,
-  MdLogout,
   MdSchedule,
   MdHealthAndSafety,
   MdPeople,
+  MdCalendarMonth,
 } from "react-icons/md";
 
 import DashboardLink from './dashboardLink/dashboardLink';
@@ -25,6 +23,11 @@ const dashboardItems = [
         icon: <MdDashboard />,
       },
       {
+        title: "Calendar",
+        path: "/dashboard/calendar",
+        icon: <MdCalendarMonth />,
+      },
+      {
         title: "User Profile",
         path: "/dashboard/userDetails",
         icon: <MdPeople />,
@@ -34,30 +37,31 @@ const dashboardItems = [
         path: "/dashboard/Appointments",
         icon: <MdSchedule />,
       },
-     
+
     ],
   },
-  
+
   {
-    title: "Help",
+    title: "Settings",
     list: [
       {
         title: "Settings",
         path: "/dashboard/settings",
         icon: <MdOutlineSettings />,
       },
-      {
-        title: "Logout",
-        path: "/dashboard/logout",
-        icon: <MdLogout />,
-      },
     ],
   },
 ];
 
 
-const Sidebar = async () => {
-  
+const Sidebar = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user') || '{}');
+    setUser(userData);
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -69,6 +73,8 @@ const Sidebar = async () => {
           height="50"
         />
         <div className={styles.userDetail}>
+          <span className={styles.username}>{user?.username || 'User'}</span>
+          <span className={styles.userEmail}>{user?.email || ''}</span>
         </div>
       </div>
       <ul className={styles.list}>
@@ -81,7 +87,7 @@ const Sidebar = async () => {
           </li>
         ))}
       </ul>
-      
+
     </div>
   );
 };

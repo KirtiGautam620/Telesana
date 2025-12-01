@@ -1,0 +1,125 @@
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 6rem 1rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #337af5;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.faqList {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.faqItem {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  transition: background-color 0.2s;
+}
+
+.question:hover {
+  background-color: #f9fafb;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: #337af5;
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 1.5rem;
+}
+
+.answer.show {
+  max-height: 500px;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.answer p {
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contactSection {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contactSection h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.contactSection p {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.contactButton {
+  display: inline-block;
+  background-color: #16a34a;
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.contactButton:hover {
+  background-color: #15803d;
+}

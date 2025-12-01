@@ -37,7 +37,7 @@ export default function Chatbot() {
       const formData = new FormData();
       formData.append("msg", message);
 
-      const response = await fetch("http://localhost:5001/get", {
+      const response = await fetch("http://localhost:5000/get", {
         method: "POST",
         body: formData,
       });
@@ -56,7 +56,7 @@ export default function Chatbot() {
       setIsTyping(false);
       const errorMessage = {
         type: "bot",
-        text: "Sorry, I'm having trouble connecting. Please ensure the MediBuddy server is running on port 5001.",
+        text: "Sorry, I'm having trouble connecting. Please ensure the MediBuddy server is running on port 5000.",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, errorMessage]);
