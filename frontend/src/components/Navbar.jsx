@@ -5,10 +5,12 @@ import "./Navbar.css";
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <div className="navbar-logo-container">
-        <img src="/logo.png" alt="logo" className="navbar-logo" />
-        <h1 className="navbar-title">TELESANA</h1>
-      </div>
+      <Link href="/" style={{ textDecoration: 'none' }}>
+        <div className="navbar-logo-container">
+          <img src="/logo.png" alt="logo" className="navbar-logo" />
+          <h1 className="navbar-title">TELESANA</h1>
+        </div>
+      </Link>
       <ul className="navbar-links">
         <li>
           <Link href="/home">Home</Link>

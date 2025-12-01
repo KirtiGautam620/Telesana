@@ -9,6 +9,7 @@ import {
   MdHealthAndSafety,
   MdPeople,
   MdCalendarMonth,
+  MdNotifications,
 } from "react-icons/md";
 
 import DashboardLink from './dashboardLink/dashboardLink';
@@ -21,6 +22,11 @@ const dashboardItems = [
         title: "Dashboard",
         path: "/dashboard",
         icon: <MdDashboard />,
+      },
+      {
+        title: "Notifications",
+        path: "/dashboard/notifications",
+        icon: <MdNotifications />,
       },
       {
         title: "Calendar",

@@ -23,6 +23,7 @@ app.use('/api/patient', patientRoutes)
 app.use('/api/health', healthRoutes)
 app.use('/api/doctors', doctorRoutes)
 app.use('/api/appointment', appointmentRoutes)
+app.use('/api/appointments', appointmentRoutes)
 
 app.get("/", (req, res) => {
     res.send("Telesana backend running")
