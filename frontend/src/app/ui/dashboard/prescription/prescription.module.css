@@ -1,67 +1,67 @@
 .container {
-    background-color: #1A1F37; 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-top: 20px; 
-  }
-  
-  .title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #A0AEC0;
-    margin-bottom: 20px;
-  }
-  
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table th {
-    text-align: left;
-    padding: 10px;
-    font-size: 14px;
-    color: #A0AEC0;
-    font-weight: 500;
-  }
-  
-  .table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #2D3748; 
-  }
+  background-color: #ffffff; /* changed from dark to white */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 20px; 
+}
 
-  .table tr:last-child td {
-    border-bottom: none;
-  }
-  
-  .medicine {
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-  }
-  
-  .text {
-    color: #CBD5E0;
-    font-size: 14px;
-  }
-  
-  .badge {
-    padding: 5px 12px;
-    border-radius: 15px; 
-    font-size: 12px;
-    font-weight: 700;
-    display: inline-block;
-  }
-  
-  .active, .good {
-    background-color: rgba(79, 209, 197, 0.2);
-    color: #4FD1C5;
-    border: 1px solid #4FD1C5;
-  }
-  
-  .warning {
-    background-color: rgba(239, 68, 68, 0.2);
-    color: #F87171;
-    border: 1px solid #F87171;
-  }
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #107ecc; /* changed from grey to blue */
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+  color: #107ecc; /* secondary color for headers */
+  font-weight: 500;
+}
+
+.table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e2e8f0; /* lighter border for white background */
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.medicine {
+  color: #107ecc; /* primary blue for important text */
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.text {
+  color: #6b7280; /* medium grey text for secondary info */
+  font-size: 14px;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 15px; 
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.active, .good {
+  background-color: rgba(16, 126, 204, 0.2); /* light blue background */
+  color: #107ecc; /* blue text */
+  border: 1px solid #107ecc;
+}
+
+.warning {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #F87171;
+  border: 1px solid #F87171;
+}

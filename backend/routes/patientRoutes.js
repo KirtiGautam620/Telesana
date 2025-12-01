@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const patientController = require("../controllers/patientControllers.js");
+const patientController = require("../controllers/patientController.js");
 
-// Add patient routes here as needed
-// For now, just export empty router to prevent errors
+router.get("/", patientController.getPatient);
 
 module.exports = router;
