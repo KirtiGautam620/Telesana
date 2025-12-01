@@ -2,210 +2,67 @@
   position: sticky;
   top: 40px;
   height: 90vh;
-  background: linear-gradient(165deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-  border-radius: 20px;
+  background-color: #337af5; 
+  border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
-              0 0 0 1px rgba(99, 102, 241, 0.1);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 0 10px 30px rgba(51, 122, 245, 0.3);
   overflow-y: auto;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.container:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(99, 102, 241, 0.2);
-}
-
-.container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.container::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.3);
-  border-radius: 10px;
-}
-
-.container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 10px;
-}
-
-.container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .user {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px;
+  padding: 16px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-  margin-bottom: 28px;
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  margin-bottom: 32px;
+  transition: background 0.3s ease;
 }
 
 .user:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .userImage {
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(99, 102, 241, 0.4);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-  transition: all 0.3s ease;
-}
-
-.user:hover .userImage {
-  border-color: rgba(139, 92, 246, 0.6);
-  transform: scale(1.05);
+  border: 2px solid rgba(255,255,255,0.8);
 }
 
 .userDetail {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .username {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: #ffffff;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3px;
 }
 
 .userEmail {
-  font-size: 0.8rem;
-  color: #c7d2fe;
-  font-weight: 500;
+  font-size: 0.75rem;
+  color: #e0f2fe; 
+  opacity: 0.9;
 }
 
-.userTitle {
+.cat {
+  color: #dbeafe; 
+  font-weight: 700;
   font-size: 0.75rem;
-  color: #c7d2fe;
-  font-weight: 500;
+  margin: 20px 0 10px 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.list li {
-  margin-bottom: 8px;
-}
-
-.cat {
-  color: #a5b4fc;
-  font-weight: 700;
-  font-size: 0.7rem;
-  margin: 24px 0 12px 12px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding-bottom: 8px;
-}
-
-.cat::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 30px;
-  height: 2px;
-  background: linear-gradient(90deg, #6366f1 0%, transparent 100%);
-  border-radius: 2px;
-}
-
-.list li a {
-  color: #cbd5e1;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 14px 16px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.list li a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) scaleY(0);
-  width: 4px;
-  height: 60%;
-  background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 0 4px 4px 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.list li a:hover::before {
-  transform: translateY(-50%) scaleY(1);
-}
-
-.list li a:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
-  color: #ffffff;
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-}
-
-.list li a svg {
-  font-size: 1.4rem;
-  transition: all 0.3s ease;
-}
-
-.list li a:hover svg {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
-}
-
-.logout {
-  padding: 14px 16px;
-  margin: 16px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  color: #fecaca;
-  font-weight: 600;
-  width: 100%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.logout:hover {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
-}
-
-.logout svg {
-  font-size: 1.4rem;
-  transition: transform 0.3s ease;
-}
-
-.logout:hover svg {
-  transform: translateX(4px);
 }
