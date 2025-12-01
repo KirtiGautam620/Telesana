@@ -21,20 +21,26 @@
   }
   
   .username {
-    font-weight: 500;
+    font-weight: 600;
+    color: #111827;
   }
-  
+
+  .userEmail {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
   .userTitle {
     font-size: 12px;
-    color: #b7bac1;
+    color: #6b7280;
   }
-  
+
   .list {
     list-style: none;
   }
-  
+
   .cat {
-    color: #b7bac1; 
+    color: #6b7280;
     font-weight: bold;
     font-size: 13px;
     margin: 10px 0px;

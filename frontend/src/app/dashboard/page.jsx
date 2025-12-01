@@ -1,18 +1,61 @@
+"use client";
+import React, { useState, useEffect } from 'react';
 import Card from "../ui/dashboard/card/card";
 import Rightbar from "../ui/dashboard/rightbar/rightbar";
 import Upcoming from "../ui/dashboard/upcoming/upcoming";
 import styles from "../ui/dashboard/dashboard.module.css";
-
-
-import { MdFavorite, MdNightlightRound, MdWaterDrop } from "react-icons/md";
+import { MdFavorite, MdNightlightRound, MdWaterDrop, MdThermostat } from "react-icons/md";
 import Prescriptions from "../ui/dashboard/prescription/prescription";
 
 const Dashboard = () => {
-  
+  const [healthData, setHealthData] = useState(null);
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    fetchHealthData();
+    fetchAppointments();
+  }, []);
+
+  const fetchHealthData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:4000/api/health/passbook', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setHealthData(data.healthPassbook);
+      }
+    } catch (error) {
+      console.error('Error fetching health data:', error);
+    }
+  };
+
+  const fetchAppointments = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:4000/api/appointments', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setAppointments(data);
+      }
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    }
+  };
+
   const cards = [
     {
       title: "Heart Rate",
-      value: "72 bpm",
+      value: healthData?.healthData?.heartRate || "72 bpm",
       icon: <MdFavorite size={24} />,
       change: {
         value: "+2%",
@@ -21,43 +64,38 @@ const Dashboard = () => {
       },
     },
     {
-      title: "Blood Glucose",
-      value: "95 mg/dL",
-      icon: <MdWaterDrop size={24} />, 
+      title: "Blood Pressure",
+      value: healthData?.healthData?.bloodPressure || "120/80",
+      icon: <MdThermostat size={24} />,
       change: {
-        value: "-5%",
-        isPositive: true, 
-        status: "(Fasting)",
+        value: "Normal",
+        isPositive: true,
+        status: "(Healthy)",
       },
     },
     {
-      title: "Sleep Duration",
-      value: "7h 30m",
-      icon: <MdNightlightRound size={24} />,
+      title: "Blood Glucose",
+      value: healthData?.healthData?.bloodGlucose || "95 mg/dL",
+      icon: <MdWaterDrop size={24} />,
       change: {
-        value: "+45m",
+        value: "-5%",
         isPositive: true,
-        status: "vs yesterday",
+        status: "(Fasting)",
       },
     },
   ];
 
   return (
     <div className={styles.wrapper}>
-
       <div className={styles.main}>
-
         <div className={styles.cards}>
           {cards.map((item) => (
             <Card item={item} key={item.title} />
           ))}
         </div>
 
-        <Upcoming />
-
-        <Prescriptions/>
-
-
+        <Upcoming appointments={appointments} />
+        <Prescriptions />
       </div>
 
       <div className={styles.side}>

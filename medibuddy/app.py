@@ -10,6 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 import os
+import re
 
 
 app = Flask(__name__)
@@ -40,14 +41,20 @@ retriever = docsearch.as_retriever(search_type="similarity")
 # )
 
 # --- Hugging Face Medical Model (Better for medical questions) ---
+# hf_llm = HuggingFaceEndpoint(
+#     repo_id="Intelligent-Internet/II-Medical-8B",
+#     task="text-generation",
+#     max_new_tokens=512,
+#     temperature=0.0,
+#     huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN
+# )
 hf_llm = HuggingFaceEndpoint(
-    repo_id="Intelligent-Internet/II-Medical-8B",
+    repo_id="meta-llama/Meta-Llama-3-8B-Instruct",
     task="text-generation",
     max_new_tokens=512,
     temperature=0.0,
     huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN
 )
-
 # --- Alternative: Generic Zephyr model ---
 # hf_llm = HuggingFaceEndpoint(
 #     repo_id="HuggingFaceH4/zephyr-7b-beta",
@@ -68,6 +75,13 @@ prompt = ChatPromptTemplate.from_messages(
 question_answer_chain = create_stuff_documents_chain(chatModel, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
+
+def extract_answer(response_text):
+    """Extract only the content inside <Answer> tags, removing <think> sections."""
+    answer_match = re.search(r'<Answer>(.*?)</Answer>', response_text, re.DOTALL)
+    if answer_match:
+        return answer_match.group(1).strip()
+    return response_text
 
 
 @app.route("/")
@@ -90,7 +104,8 @@ def chat():
 
         response = rag_chain.invoke({"input": msg})
         print("Response : ", response["answer"])
-        return jsonify({"answer": response["answer"]})
+        clean_answer = extract_answer(response["answer"])
+        return jsonify({"answer": clean_answer})
     except Exception as e:
         print(f"Error: {str(e)}")
         import traceback
@@ -102,4 +117,4 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5001, debug=False, threaded=True)
+    app.run(host="127.0.0.1", port=5000, debug=False, threaded=True)

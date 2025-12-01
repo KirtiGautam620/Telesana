@@ -84,6 +84,13 @@
   }
   
   .cancelled {
-    background-color: #ef4444; 
+    background-color: #ef4444;
     color: white;
+  }
+
+  .noData {
+    text-align: center;
+    padding: 20px;
+    color: #718096;
+    font-size: 14px;
   }

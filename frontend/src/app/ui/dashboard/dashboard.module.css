@@ -1,20 +1,22 @@
 .container {
   display: flex;
-  background-color: #151c2c; 
-  color: white;              
-  min-height: 100vh;         
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
 }
 
 .menu {
   flex: 1;
-  background-color: #182237;
+  background-color: white;
   padding: 20px;
   min-height: 100vh;
+  border-right: 1px solid #e5e7eb;
 }
-  
+
 .content {
   flex: 4;
   padding: 20px;
+  background-color: #f9fafb;
 }
 
 .wrapper {
