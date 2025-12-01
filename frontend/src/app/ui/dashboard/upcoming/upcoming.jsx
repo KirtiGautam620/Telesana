@@ -41,7 +41,7 @@ const Upcoming = ({ appointments = [] }) => {
                   />
                   <div className={styles.doctorDetails}>
                     <span className={styles.doctorName}>
-                      Dr. {apt.doctor.doctor_name}
+                      {apt.doctor.doctor_name}
                     </span>
                   </div>
                 </div>

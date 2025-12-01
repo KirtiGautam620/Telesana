@@ -18,26 +18,23 @@
 }
 
 .editButton {
-  background-color: #16a34a;
+  background-color: #337af5;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.editButton:hover {
-  background-color: #15803d;
 }
 
 .accountInfo,
 .profileSection {
-  background-color: #182237;
+  background-color: #ffffff; 
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
 }
 
 .accountInfo h2,
@@ -46,6 +43,8 @@
   font-weight: 600;
   margin-bottom: 20px;
   color: #337af5;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
 }
 
 .infoGrid {
@@ -57,13 +56,14 @@
 .infoItem label {
   display: block;
   font-size: 14px;
-  color: #94979c;
+  color: #64748b; 
   margin-bottom: 5px;
 }
 
 .infoItem p {
   font-size: 16px;
-  color: white;
+  color: #1e293b; 
+  font-weight: 500;
   margin: 0;
 }
 
@@ -80,22 +80,23 @@
 
 .formGroup label {
   font-size: 14px;
-  color: #94979c;
+  color: #64748b;
   margin-bottom: 8px;
 }
 
 .input {
   padding: 12px;
-  border: 1px solid #374151;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  background-color: #151c2c;
-  color: white;
+  background-color: #f8fafc;
+  color: #1e293b;
   font-size: 14px;
 }
 
 .input:focus {
   outline: none;
   border-color: #337af5;
+  background-color: white;
 }
 
 .buttonGroup {
@@ -112,32 +113,14 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.saveButton:hover {
-  background-color: #15803d;
 }
 
 .cancelButton {
-  background-color: #374151;
+  background-color: #94a3b8;
   color: white;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.cancelButton:hover {
-  background-color: #1f2937;
-}
-
-.loading,
-.noData {
-  text-align: center;
-  padding: 40px;
-  color: #94979c;
-  font-size: 16px;
 }

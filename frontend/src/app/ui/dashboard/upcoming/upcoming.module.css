@@ -1,44 +1,89 @@
 .container {
-  background-color: white; /* Primary color */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-  border: 1px solid #e6f4ff; /* Subtle blue border */
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  border: 1px solid #f1f5f9;
+  margin-top: 24px;
 }
 
 .title {
   font-size: 20px;
-  font-weight: 600;
-  color: #107ecc; /* Blue title */
+  font-weight: 700;
+  color: #337af5;
   margin-bottom: 20px;
 }
 
-  .status {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    width: fit-content;
-  }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  .confirmed {
-    background-color: #6D28D9;
-    color: white;
-  }
+.table thead {
+  background-color: #f8fafc; 
+}
 
-  .pending {
-    background-color: #f59e0b;
-    color: white;
-  }
+.table thead th {
+  text-align: left;
+  padding: 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+  border-radius: 8px;
+}
 
-  .cancelled {
-    background-color: #ef4444;
-    color: white;
-  }
+.table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s;
+}
 
-  .noData {
-    text-align: center;
-    padding: 20px;
-    color: #718096;
-    font-size: 14px;
-  }
+.table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.table td {
+  padding: 16px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.doctor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userImage {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+}
+
+.doctorName {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.confirmed {
+  background-color: #eff6ff;
+  color: #337af5;
+  border: 1px solid #dbeafe;
+}
+
+.noData {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
