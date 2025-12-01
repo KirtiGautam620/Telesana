@@ -9,23 +9,34 @@ const bookAppointment = async (data) => {
     mode
   } = data;
 
-
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: { patient: true }
   });
 
-  if (!user || !user.patient) {
-    throw new Error("Patient profile not found for this user.");
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  if (!user.patient) {
+    throw new Error("Please complete your patient profile before booking an appointment. Go to User Profile to create your profile.");
   }
 
   const patientId = user.patient.id;
 
+  // Verify doctor exists
+  const doctor = await prisma.doctor.findUnique({
+    where: { id: String(doctorId) }
+  });
+
+  if (!doctor) {
+    throw new Error("Doctor not found");
+  }
 
   return prisma.appointment.create({
     data: {
       patientId,
-      doctorId,
+      doctorId: String(doctorId),
       appointmentTime: new Date(appointmentTime),
       mode,
       status: "SCHEDULED"
@@ -38,7 +49,6 @@ const bookAppointment = async (data) => {
 };
 
 const getAppointmentsForUser = async (userId) => {
-  
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: { patient: true }

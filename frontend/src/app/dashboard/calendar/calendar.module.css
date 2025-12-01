@@ -118,23 +118,36 @@
 }
 
 .hasAppointment {
-  background-color: #f0fdf4;
+  background: linear-gradient(135deg, #dbeafe 0%, #f0fdf4 100%);
+  border: 2px solid #3b82f6;
+  box-shadow: inset 0 0 8px rgba(59, 130, 246, 0.1);
 }
 
 .appointmentIndicators {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .appointmentDot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: #16a34a;
   position: relative;
   cursor: pointer;
+  box-shadow: 0 0 4px rgba(22, 163, 74, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(22, 163, 74, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(22, 163, 74, 0.8);
+  }
 }
 
 .tooltip {

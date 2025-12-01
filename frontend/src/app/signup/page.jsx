@@ -10,6 +10,7 @@ const SignupPage = () => {
     const router = useRouter()
     const [user,setUser]=useState({email:"",password:"",username:""})
     const [agree,setAgree]=useState(false)
+    const [loading,setLoading]=useState(false)
     const onSignup=async(e)=>{
         e.preventDefault()
         const email=user.email.trim()
@@ -30,6 +31,7 @@ const SignupPage = () => {
             return
         }
         try{
+            setLoading(true)
             const response=await fetch("http://localhost:4000/api/auth/signup",{
             method:"POST",
             headers:{
@@ -47,12 +49,14 @@ const SignupPage = () => {
             localStorage.setItem("user",JSON.stringify(data.user))
             router.push('/dashboard')
         }else{
-            toast.error("SignUp Failed")
+            toast.error(data.message || "SignUp Failed")
+            setLoading(false)
         }
     }
     catch(err){
         toast.error("Something went wrong")
         console.log(err)
+        setLoading(false)
     }  
 }   
 
@@ -66,13 +70,13 @@ const SignupPage = () => {
         <label className='label' htmlFor='email' >Email</label>
         <input className={"input"} type="text" placeholder="Email" name="email" id="email" value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})} />
         <label className='label' htmlFor='password'>Enter Password</label>
-        <input className={"input"} type="password"  placeholder="Password" name="password" value={user.password} id="password" onChange={(e)=>setUser({...user,password:e.target.value})} />
+        <input className={"input"} type="password"  placeholder="Password" name="password" value={user.password} id="password" onChange={(e)=>setUser({...user,password:e.target.value})} disabled={loading} />
                 <FormControlLabel
         sx={{color:"grey"}}
-        control={<Checkbox checked={agree} onChange={(e)=>setAgree(e.target.checked)} />}
+        control={<Checkbox checked={agree} onChange={(e)=>setAgree(e.target.checked)} disabled={loading} />}
         label="I agree to terms"
         />
-        <button className='button' type='submit'>Signup</button>
+        <button className='button' type='submit' disabled={loading}>{loading ? "Signing up..." : "Signup"}</button>
         </form>
         <Link href="/login" className='login'>Login</Link>
         </div>

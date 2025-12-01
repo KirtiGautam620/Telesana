@@ -11,6 +11,7 @@ const LoginPage = () => {
     const router = useRouter();
     const [user, setUser] = useState({ email: "", password: "" });
     const [agree, setAgree] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -30,6 +31,7 @@ const LoginPage = () => {
             return;
         }
         try {
+            setLoading(true);
             const response = await fetch("http://localhost:4000/api/auth/login", {
                 method: "POST",
                 headers: {
@@ -46,10 +48,12 @@ const LoginPage = () => {
                 router.push('/dashboard');
             } else {
                 toast.error(data.message || "Login Failed");
+                setLoading(false);
             }
         } catch (err) {
             toast.error("Something went wrong");
             console.log(err);
+            setLoading(false);
         }
     };
 
@@ -59,30 +63,32 @@ const LoginPage = () => {
                 <h1>Login</h1>
                 <form onSubmit={onLogin}>
                     <label className='label' htmlFor='email'>Email ID</label>
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="email" 
-                        value={user.email} 
-                        placeholder='Email' 
-                        id="email" 
-                        onChange={(e) => setUser({ ...user, email: e.target.value })} 
+                    <input
+                        className="input"
+                        type="text"
+                        name="email"
+                        value={user.email}
+                        placeholder='Email'
+                        id="email"
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        disabled={loading}
                     />
                     <label className='label' htmlFor='password'>Password</label>
-                    <input 
-                        className='input' 
-                        type="password" 
-                        name="password" 
-                        placeholder='Password' 
-                        id="password" 
-                        onChange={(e) => setUser({ ...user, password: e.target.value })} 
+                    <input
+                        className='input'
+                        type="password"
+                        name="password"
+                        placeholder='Password'
+                        id="password"
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        disabled={loading}
                     />
-                    <FormControlLabel 
-                        sx={{ color: "grey" }} 
-                        control={<Checkbox checked={agree} onChange={(e) => setAgree(e.target.checked)} />} 
-                        label="Remember Me For 30 days" 
+                    <FormControlLabel
+                        sx={{ color: "grey" }}
+                        control={<Checkbox checked={agree} onChange={(e) => setAgree(e.target.checked)} disabled={loading} />}
+                        label="Remember Me For 30 days"
                     />
-                    <button className="button" type='submit'>Login</button>
+                    <button className="button" type='submit' disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
                 </form>
                 
             
