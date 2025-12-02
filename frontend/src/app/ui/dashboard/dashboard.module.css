@@ -52,7 +52,7 @@
 /* Sidebar */
 .menu {
   flex: 1;
-  background-color: #107ecc;    /* Light blue-tinted white */
+  background-color: #5686f6;    /* Light blue-tinted white */
   padding: 20px;
   min-height: 100vh;
   border-right: 2px solid #107ecc22; /* subtle divider */
