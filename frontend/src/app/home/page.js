@@ -27,9 +27,9 @@ export default function Home() {
               Get Started
             </Link>
 
-            <button className="button-secondary">
+            <Link href="/doctors" className="button-secondary">
               Find Doctors
-            </button>
+            </Link>
           </div>
         </div>
 
