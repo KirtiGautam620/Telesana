@@ -1,0 +1,7 @@
+backend/
+medibuddy/
+node_modules/
+*.md
+.git/
+.DS_Store
+.claude/
