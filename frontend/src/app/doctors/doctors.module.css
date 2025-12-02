@@ -1,10 +1,11 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0ea5e9 100%);
+  background: linear-gradient(135deg, #213d7e 0%, #1944ba 50%, #5686f6 100%);
   padding: 2rem 1rem;
 }
 
 .header {
+  margin-top: 3rem;
   text-align: center;
   margin-bottom: 3rem;
   padding: 3rem 2rem 2rem;
@@ -16,7 +17,7 @@
 .title {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #06b6d4 0%, #5686f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
