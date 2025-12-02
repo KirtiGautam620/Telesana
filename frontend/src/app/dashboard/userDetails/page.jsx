@@ -1,33 +1,43 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import styles from './userDetails.module.css';
-import toast from 'react-hot-toast';
+import React, { useState, useEffect } from "react";
+import styles from "./userDetails.module.css";
+import toast from "react-hot-toast";
+
+const genderMap = { M: "MALE", F: "FEMALE", Other: "OTHER" };
 
 const UserDetailsPage = () => {
   const [user, setUser] = useState(null);
   const [patient, setPatient] = useState(null);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
-    gender: 'M',
-    dob: ''
-  });
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    gender: "M",
+    dob: "",
+    height: "",
+    weight: "",
+    bloodGroup: "",
+    age: ""
+  });
+
   useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user") || "{}"));
     fetchProfile();
-    const userData = JSON.parse(localStorage.getItem('user') || '{}');
-    setUser(userData);
   }, []);
+
+  const calculateAge = (dob) => {
+    if (!dob) return "";
+    const diff = Date.now() - new Date(dob).getTime();
+    return Math.abs(new Date(diff).getUTCFullYear() - 1970);
+  };
 
   const fetchProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/api/patient/profile', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:4000/api/patient/profile", {
+        headers: { Authorization: `Bearer ${token}` }
       });
 
       if (response.ok) {
@@ -35,73 +45,87 @@ const UserDetailsPage = () => {
         setPatient(data);
         setFormData({
           fullName: data.fullName,
-          phone: data.phone || '',
-          gender: data.gender,
-          dob: data.dob?.split('T')[0] || ''
+          phone: data.phone || "",
+          gender: data.gender === "MALE" ? "M" : data.gender === "FEMALE" ? "F" : "Other",
+          dob: data.dob?.split("T")[0],
+          height: data.height ?? "",
+          weight: data.weight ?? "",
+          bloodGroup: data.bloodGroup ?? "",
+          age: calculateAge(data.dob)
         });
       } else if (response.status === 404) {
         setIsEditing(true);
       }
-    } catch (error) {
-      console.error('Error fetching profile:', error);
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!formData.fullName || !formData.dob || !formData.gender) {
-      toast.error('Please fill all required fields');
-      return;
-    }
-
-    try {
-      const token = localStorage.getItem('token');
-      const method = patient ? 'PUT' : 'POST';
-      const response = await fetch('http://localhost:4000/api/patient/profile', {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success(data.message);
-        setPatient(data.patient);
-        setIsEditing(false);
-      } else {
-        toast.error(data.message || 'Failed to save profile');
-      }
-    } catch (error) {
-      toast.error('Something went wrong');
-      console.error(error);
-    }
-  };
-
-  if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
+  if (!formData.fullName || !formData.dob || !formData.gender) {
+    toast.error("Please fill all required fields");
+    return;
   }
+
+  try {
+    const token = localStorage.getItem("token");
+    const method = patient ? "PUT" : "POST";
+
+    // Convert fields safely
+    const payload = {
+      fullName: formData.fullName,
+      gender: formData.gender,
+      dob: formData.dob || null,
+      phone: formData.phone?.trim() || null,
+      height: formData.height ? Number(formData.height) : null,
+      weight: formData.weight ? Number(formData.weight) : null,
+      bloodGroup: formData.bloodGroup || null,
+    };
+
+    const response = await fetch("http://localhost:4000/api/patient/profile", {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      toast.success(data.message || "Profile saved");
+      fetchProfile();
+      setIsEditing(false);
+    } else {
+      toast.error(data.message || "Failed to save profile");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Something went wrong");
+  }
+};
+
+
+  if (loading) return <div className={styles.loading}>Loading...</div>;
 
   return (
     <div className={styles.container}>
+      {/* Header */}
       <div className={styles.header}>
         <h1 className={styles.title}>User Profile</h1>
         {patient && !isEditing && (
-          <button
-            onClick={() => setIsEditing(true)}
-            className={styles.editButton}
-          >
+          <button className={styles.editButton} onClick={() => setIsEditing(true)}>
             Edit Profile
           </button>
         )}
       </div>
 
+      {/* Account Info */}
       {user && (
         <div className={styles.accountInfo}>
           <h2>Account Information</h2>
@@ -118,10 +142,13 @@ const UserDetailsPage = () => {
         </div>
       )}
 
+      {/* Profile Section */}
       <div className={styles.profileSection}>
         <h2>Personal Information</h2>
+
         {isEditing ? (
-          <form onSubmit={handleSubmit} className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            {/* Full Name */}
             <div className={styles.formGroup}>
               <label>Full Name *</label>
               <input
@@ -133,6 +160,7 @@ const UserDetailsPage = () => {
               />
             </div>
 
+            {/* Phone */}
             <div className={styles.formGroup}>
               <label>Phone</label>
               <input
@@ -140,10 +168,10 @@ const UserDetailsPage = () => {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className={styles.input}
-                placeholder="Optional"
               />
             </div>
 
+            {/* Gender */}
             <div className={styles.formGroup}>
               <label>Gender *</label>
               <select
@@ -154,41 +182,87 @@ const UserDetailsPage = () => {
               >
                 <option value="M">Male</option>
                 <option value="F">Female</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
+            {/* DOB */}
             <div className={styles.formGroup}>
               <label>Date of Birth *</label>
               <input
                 type="date"
                 value={formData.dob}
-                onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, dob: e.target.value, age: calculateAge(e.target.value) })}
                 className={styles.input}
                 required
               />
             </div>
 
+            {/* Age */}
+            <div className={styles.formGroup}>
+              <label>Age</label>
+              <input type="number" value={formData.age} readOnly className={styles.input} />
+            </div>
+
+            {/* Height */}
+            <div className={styles.formGroup}>
+              <label>Height (cm)</label>
+              <input
+                type="number"
+                value={formData.height}
+                onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+                className={styles.input}
+              />
+            </div>
+
+            {/* Weight */}
+            <div className={styles.formGroup}>
+              <label>Weight (kg)</label>
+              <input
+                type="number"
+                value={formData.weight}
+                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                className={styles.input}
+              />
+            </div>
+
+            {/* Blood Group */}
+            <div className={styles.formGroup}>
+              <label>Blood Group</label>
+              <select
+                value={formData.bloodGroup}
+                onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
+                className={styles.input}
+              >
+                <option value="">Select</option>
+                {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map((bg) => (
+                  <option key={bg} value={bg}>{bg}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Buttons */}
             <div className={styles.buttonGroup}>
-              <button type="submit" className={styles.saveButton}>
-                Save
+              <button type="submit" className={styles.saveButton}>Save</button>
+              <button
+                type="button"
+                className={styles.cancelButton}
+                onClick={() => {
+                  setIsEditing(false);
+                  setFormData({
+                    fullName: patient.fullName,
+                    phone: patient.phone || "",
+                    gender: patient.gender === "MALE" ? "M" : patient.gender === "FEMALE" ? "F" : "Other",
+                    dob: patient.dob?.split("T")[0],
+                    height: patient.height ?? "",
+                    weight: patient.weight ?? "",
+                    bloodGroup: patient.bloodGroup ?? "",
+                    age: calculateAge(patient.dob)
+                  });
+                }}
+              >
+                Cancel
               </button>
-              {patient && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsEditing(false);
-                    setFormData({
-                      fullName: patient.fullName,
-                      phone: patient.phone || '',
-                      gender: patient.gender,
-                      dob: patient.dob?.split('T')[0] || ''
-                    });
-                  }}
-                  className={styles.cancelButton}
-                >
-                  Cancel
-                </button>
-              )}
             </div>
           </form>
         ) : patient ? (
@@ -199,15 +273,31 @@ const UserDetailsPage = () => {
             </div>
             <div className={styles.infoItem}>
               <label>Phone</label>
-              <p>{patient.phone || 'Not provided'}</p>
+              <p>{patient.phone ?? "Not provided"}</p>
             </div>
             <div className={styles.infoItem}>
               <label>Gender</label>
-              <p>{patient.gender === 'M' ? 'Male' : 'Female'}</p>
+              <p>{patient.gender === "MALE" ? "Male" : patient.gender === "FEMALE" ? "Female" : "Other"}</p>
             </div>
             <div className={styles.infoItem}>
               <label>Date of Birth</label>
               <p>{new Date(patient.dob).toLocaleDateString()}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <label>Age</label>
+              <p>{calculateAge(patient.dob)}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <label>Height (cm)</label>
+              <p>{patient.height ?? "Not provided"}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <label>Weight (kg)</label>
+              <p>{patient.weight ?? "Not provided"}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <label>Blood Group</label>
+              <p>{patient.bloodGroup ?? "Not provided"}</p>
             </div>
           </div>
         ) : (

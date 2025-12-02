@@ -27,9 +27,9 @@ enum AppointmentStatus {
 }
 
 enum gender {
-  Male
-  Female
-  Other
+  MALE
+  FEMALE
+  OTHER
 }
 
 
@@ -47,24 +47,23 @@ model User {
 }
 
 
-
-
 model Patient {
-  id        String    @id @default(uuid())
-  fullName String
-  // lastName  String
-  phone     String?   @unique
-  gender    gender
-  dob       DateTime  @db.Date
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt 
-  userId    String    @unique
-  user      User      @relation(fields: [userId], references: [id])
+  id          String    @id @default(uuid())
+  fullName    String
+  phone       String?   @unique
+  gender      gender
+  dob         DateTime  @db.Date
+  height      Int?
+  weight      Int?
+  bloodGroup  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt 
+  userId      String    @unique
+  user        User      @relation(fields: [userId], references: [id])
   healthPassbook HealthPassbook?
   appointments   Appointment[]
   prescriptions  Prescription[]
 }
-
 
 
 model HealthPassbook {
