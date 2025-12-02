@@ -24,7 +24,7 @@ const AppointmentsPage = () => {
   const generateTimeSlots = () => {
     const slots = []
     let start = 9
-    const end = 17
+    const end = 19
 
     for (let i = start; i < end; i++) {
       slots.push(`${i < 10 ? '0' + i : i}:00`)
