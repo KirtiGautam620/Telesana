@@ -1,33 +1,61 @@
 const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-const getOrCreatePatient = async (userId, fullName, phone, gender, dob) => {
-  try {
-    let patient = await prisma.patient.findFirst({
-      where: { userId: userId, fullName: fullName },
-    });
-
-    if (patient) {
-      return patient;
-    }
-
-    console.log(`Creating new patient: ${fullName}`)
-
-    patient = await prisma.patient.create({
-      data: {
-        userId: userId,
-        fullName: fullName,
-        phone: phone || "0000000000",       
-        gender: gender || "Other",          
-        dob: dob? new Date(dob) : new Date(), 
-      },
-    });
-
-    return patient;
-  } catch (error) {
-    console.error("Error in getOrCreatePatient:", error);
-    throw new Error(error.message)
-  }
+const findPatientByUserId = async (userId) => {
+  return prisma.patient.findUnique({
+    where: { userId },
+    include: {
+      user: { select: { id: true, username: true, email: true } },
+    },
+  });
 };
 
-module.exports = { getOrCreatePatient }
+const createPatient = async ({
+  userId,
+  fullName,
+  phone,
+  gender,
+  dob,
+  height,
+  weight,
+  bloodGroup,
+}) => {
+  return prisma.patient.create({
+    data: {
+      userId,
+      fullName,
+      phone: phone || null,
+      gender, // must match Prisma enum
+      dob: dob ? new Date(dob) : null,
+      height: height != null ? Number(height) : null,
+      weight: weight != null ? Number(weight) : null,
+      bloodGroup: bloodGroup || null,
+    },
+    include: { user: { select: { id: true, username: true, email: true } } },
+  });
+};
+
+const updatePatient = async (userId, fieldsToUpdate) => {
+  const data = { ...fieldsToUpdate };
+
+  // Convert fields safely
+  if ("dob" in data && data.dob) data.dob = new Date(data.dob);
+  if ("height" in data && data.height != null) data.height = Number(data.height);
+  if ("weight" in data && data.weight != null) data.weight = Number(data.weight);
+
+  // Ensure optional fields are null if empty
+  if ("phone" in data && !data.phone) data.phone = null;
+  if ("bloodGroup" in data && !data.bloodGroup) data.bloodGroup = null;
+
+  return prisma.patient.update({
+    where: { userId },
+    data,
+    include: { user: { select: { id: true, username: true, email: true } } },
+  });
+};
+
+module.exports = {
+  findPatientByUserId,
+  createPatient,
+  updatePatient,
+};
