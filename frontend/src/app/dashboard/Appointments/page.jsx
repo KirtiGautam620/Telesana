@@ -13,11 +13,50 @@ const AppointmentsPage = () => {
     mode: 'VIDEO',
     appointmentTime: ''
   });
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   useEffect(() => {
     fetchAppointments();
     fetchDoctors();
   }, []);
+
+  const generateTimeSlots = () => {
+    const slots = []
+    let start = 9
+    const end = 17
+
+    for (let i = start; i < end; i++) {
+      slots.push(`${i < 10 ? '0' + i : i}:00`)
+      slots.push(`${i < 10 ? '0' + i : i}:30`)
+    }
+    return slots
+  }
+
+  const isSlotAvailable = (timeSlot) => {
+  
+    const slotDateTime = new Date(`${selectedDate}T${timeSlot}`)
+    const now = new Date()
+    if (slotDateTime < now) {
+      return false
+    }
+
+    const isBooked = appointments.some(appt => {
+      const apptDate = new Date(appt.appointmentTime)
+      return appt.doctor.id == formData.doctorId && 
+             apptDate.getTime() === slotDateTime.getTime() &&
+             appt.status !== 'CANCELLED';
+  })
+  return !isBooked
+}
+
+const handleSlotClick = (timeSlot) => {
+  setSelectedSlot(timeSlot)
+  setFormData({ 
+      ...formData, 
+      appointmentTime: `${selectedDate}T${timeSlot}` 
+  })
+}
 
   const fetchAppointments = async () => {
     try {
@@ -177,15 +216,40 @@ const AppointmentsPage = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Appointment Date & Time *</label>
-              <input
-                type="datetime-local"
-                value={formData.appointmentTime}
-                onChange={(e) => setFormData({ ...formData, appointmentTime: e.target.value })}
-                className={styles.input}
-                required
-              />
+            <label>Appointment Date *</label>
+            <input
+              type="date"
+              min={new Date().toISOString().split('T')[0]}
+              value={selectedDate}
+              onChange={(e) => {
+                  setSelectedDate(e.target.value);
+                  setSelectedSlot(null);
+              }}
+              className={styles.input}
+              required
+            />
+          </div>
+          {formData.doctorId && (
+            <div className={styles.formGroup}>
+              <label>Available Slots for {selectedDate} *</label>
+              <div className={styles.slotsGrid}>
+                {generateTimeSlots().map((slot) => {
+                  const available = isSlotAvailable(slot);
+                  return (
+                    <button
+                      key={slot}
+                      type="button" 
+                      disabled={!available}
+                      onClick={() => handleSlotClick(slot)}
+                      className={`${styles.slotButton} ${selectedSlot === slot ? styles.activeSlot : ''} ${!available ? styles.disabledSlot : ''}`}
+                    >
+                      {slot}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
+        )}
 
             <button type="submit" className={styles.submitButton}>
               Confirm Booking

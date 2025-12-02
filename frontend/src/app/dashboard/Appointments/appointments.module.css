@@ -145,3 +145,41 @@
 .cardBody strong {
   color: #334155;
 }
+
+.slotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.slotButton {
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #334155;
+  transition: all 0.2s;
+}
+
+.slotButton:hover:not(:disabled) {
+  border-color: #337af5;
+  color: #337af5;
+  background-color: #eff6ff;
+}
+
+.activeSlot {
+  background-color: #337af5 !important;
+  color: white !important;
+  border-color: #337af5 !important;
+}
+
+.disabledSlot {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  border-color: #e2e8f0;
+}
