@@ -65,7 +65,7 @@ const handleSlotClick = (timeSlot) => {
         headers: {
           'Authorization': `Bearer ${token}`
         }
-      });
+      })
 
       if (response.ok) {
         const data = await response.json();
