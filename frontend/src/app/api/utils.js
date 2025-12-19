@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:4000";
+export const API_URL = process.env.NEXT_PUBLIC_BACKEND_API;
 
 export async function apiGet(path) {
   const res = await fetch(`${API_URL}${path}`, { cache: "no-store" });
