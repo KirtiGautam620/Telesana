@@ -20,9 +20,9 @@ const nextConfig = {
 
   // Ensure static exports work properly
   experimental: {
-    outputFileTracingIncludes: {
-      '/': ['./public/**/*'],
-    },
+    // outputFileTracingIncludes: {
+    //   '/': ['./public/**/*'],
+    // },
   },
 };
 
