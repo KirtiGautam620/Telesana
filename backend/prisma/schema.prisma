@@ -3,10 +3,10 @@ generator client {
 }
 
 datasource db {
-  provider  = "mysql"
+  provider  = "postgresql"
   url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
 
 
 enum RiskLevel {
@@ -31,9 +31,6 @@ enum gender {
   FEMALE
   OTHER
 }
-
-
-
 
 
 model User {
@@ -131,5 +128,3 @@ model Reminder {
   remindAt       DateTime
   sent           Boolean      @default(false)
 }
-
-
