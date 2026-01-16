@@ -12,9 +12,19 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin:"http://localhost:3000",
-    methods:["GET","POST","PUT","DELETE"],
-}))
+  origin: function(origin, callback){
+    const allowedOrigins = ["http://localhost:3000", "https://telesana-rho.vercel.app"];
+    if(!origin) return callback(null, true); // allow server-to-server or Postman
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET","POST","PUT","DELETE", "OPTIONS"],
+  credentials: true
+}));
+
 app.use(express.json())
 
 app.get("/api/healthcheck", (req, res) => {
