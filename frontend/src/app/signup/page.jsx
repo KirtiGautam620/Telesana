@@ -66,11 +66,11 @@ const SignupPage = () => {
         <h1>Signup</h1>
         <form onSubmit={onSignup}>
         <label className='label' htmlFor='username'>Full Name</label>
-        <input className={"input"} type="text" placeholder='Full Name' name="username" id="username" value={user.username} onChange={(e)=>setUser({...user,username:e.target.value})} />
+        <input className={"input"} type="text" placeholder='Enter your full name' name="username" id="username" value={user.username} onChange={(e)=>setUser({...user,username:e.target.value})} />
         <label className='label' htmlFor='email' >Email</label>
-        <input className={"input"} type="text" placeholder="Email" name="email" id="email" value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})} />
+        <input className={"input"} type="text" placeholder="Enter your email" name="email" id="email" value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})} />
         <label className='label' htmlFor='password'>Enter Password</label>
-        <input className={"input"} type="password"  placeholder="Password" name="password" value={user.password} id="password" onChange={(e)=>setUser({...user,password:e.target.value})} disabled={loading} />
+        <input className={"input"} type="password"  placeholder="Create a password" name="password" value={user.password} id="password" onChange={(e)=>setUser({...user,password:e.target.value})} disabled={loading} />
                 <FormControlLabel
         sx={{color:"grey"}}
         control={<Checkbox checked={agree} onChange={(e)=>setAgree(e.target.checked)} disabled={loading} />}
@@ -78,10 +78,10 @@ const SignupPage = () => {
         />
         <button className='button' type='submit' disabled={loading}>{loading ? "Signing up..." : "Signup"}</button>
         </form>
-        <Link href="/login" className='login'>Login</Link>
+        <Link href="/login" className='login'>Already have an account? Login</Link>
         </div>
-        <div>
-            <img className='image' src="./img.png"/>
+        <div className='image-container'>
+            <img className='image' src="./img.png" alt="Signup Illustration"/>
         </div>
     </div>
   )
