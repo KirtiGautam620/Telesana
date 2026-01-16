@@ -18,7 +18,7 @@ export default function AllDoctors() {
   const fetchDoctors = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:4000/api/doctors");
+      const response = await fetch("https://telesana.onrender.com/api/doctors");
       if (!response.ok) {
         throw new Error("Failed to fetch doctors");
       }

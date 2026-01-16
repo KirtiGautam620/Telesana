@@ -19,7 +19,7 @@ const Dashboard = () => {
   const fetchHealthData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/api/health/passbook', {
+      const response = await fetch('https://telesana.onrender.com/api/health/passbook', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
