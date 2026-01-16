@@ -32,7 +32,7 @@ export default function Navbar() {
           </div>
         </Link>
         
-        {/* Desktop Navigation */}
+        
         <ul className="navbar-links">
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -41,7 +41,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Hamburger Button */}
+        
         <button 
           className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={toggleMobileMenu}
@@ -53,7 +53,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      
       <div className={`mobile-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={closeMobileMenu}>
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <ul className="mobile-links">

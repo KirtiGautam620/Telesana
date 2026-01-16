@@ -3,108 +3,235 @@
   color: black;
   display: flex;
   justify-content: center;
-  align-items: center;  
-  padding-top: 6rem;    
-  padding-bottom: 10rem; 
+  align-items: center;
+  padding-bottom: 7rem;
+  width: 100%;
+  min-height: 100vh;
 }
 
-
 .home-container {
-  width:90%;
+  width: 90%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
-}
-
-@media (min-width: 768px) {
-  .home-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  gap: 2rem;
 }
 
 .left-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  text-align: center;
+  width: 100%;
 }
 
-/* .badge {
-  display: inline-block;
-  padding: 0.25rem 1rem;
-  background-color: #bdc6f5;
-  color: #193ca3;
-  border-radius: 10px;
-  font-weight: 500;
-  width: fit-content;
-} */
-
 .title {
-  font-size: 3rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #337af5;
+  line-height: 1.2;
 }
 
 .title .highlight {
-  color: #107ecc; 
+  color: #107ecc;
 }
 
 .description {
-  max-width: 24rem;
-  color: #94979c; 
-  font-size: 1.125rem;
+  color: #94979c;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .buttons {
   display: flex;
-  gap: 1rem;
-  padding-top: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
 }
 
-.button-primary {
+.button-primary,
+.button-secondary {
   text-decoration: none;
-  background-color: #16a34a; 
-  color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.5rem;
   border: none;
   cursor: pointer;
   font-weight: 600;
   border-radius: 0.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.button-primary {
+  background-color: #16a34a;
+  color: white;
 }
 
 .button-primary:hover {
-  background-color: #15803d; 
+  background-color: #15803d;
 }
 
 .button-secondary {
-  background-color: #111827; 
+  background-color: #111827;
   color: white;
-  border-radius: 0.5rem;
-  border: 1px solid #374151; 
-  cursor: pointer;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
+  border: 1px solid #374151;
 }
 
 .button-secondary:hover {
-  background-color: #1f2937; 
+  background-color: #1f2937;
 }
 
 .right-content {
-  flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+@media (min-width: 480px) {
+  .home-section {
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .home-container {
+    gap: 2.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1.0625rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .buttons {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 400px;
+  }
 }
 
 @media (min-width: 768px) {
-  .right-content {
-
-    order: 2;
+  .home-section {
+    padding-top: 6rem;
+    padding-bottom: 5rem;
   }
+
+  .home-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+  }
+
   .left-content {
-    order: 1;
+    text-align: left;
+    width: auto;
+    flex: 1;
+    max-width: 520px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    max-width: 24rem;
+    margin: 0;
+  }
+
+  .buttons {
+    justify-content: flex-start;
+    max-width: none;
+    width: auto;
+  }
+
+  .right-content {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .image {
+    max-width: 100%;
+    height: auto;
   }
 }
+@media (min-width: 1024px) {
+  .home-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 
+  .home-container {
+    gap: 4rem;
+  }
+
+  .left-content {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 2.75rem;
+  }
+
+  .description {
+    max-width: 26rem;
+    font-size: 1.1875rem;
+  }
+
+  .buttons {
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  .home-section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .home-container {
+    gap: 5rem;
+  }
+
+  .left-content {
+    max-width: 560px;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    max-width: 28rem;
+    font-size: 1.25rem;
+  }
+}
 
