@@ -3,13 +3,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 3rem;
+  padding: 1rem 1.5rem;
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border-bottom: 2px solid #e0f2fe;
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .navbar-logo-container {
