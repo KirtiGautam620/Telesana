@@ -69,7 +69,7 @@ const LoginPage = () => {
                         type="text"
                         name="email"
                         value={user.email}
-                        placeholder='Email'
+                        placeholder='Enter your email'
                         id="email"
                         onChange={(e) => setUser({ ...user, email: e.target.value })}
                         disabled={loading}
@@ -79,7 +79,7 @@ const LoginPage = () => {
                         className='input'
                         type="password"
                         name="password"
-                        placeholder='Password'
+                        placeholder='Enter your password'
                         id="password"
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
                         disabled={loading}
@@ -97,7 +97,7 @@ const LoginPage = () => {
                     <p>Don't have an account? <Link href="/signup" style={{ color: "#678bee", fontWeight: "bold" }}>Sign Up</Link></p>
                 </div>
             </div>
-            <div>
+            <div className='image-container'>
                 <img className='image' src="./img.png" alt="Login Illustration" />
             </div>
         </div>
@@ -105,7 +105,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-
-
-  
