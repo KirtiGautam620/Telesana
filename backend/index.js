@@ -12,8 +12,9 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin:"*",
+    origin: ["http://localhost:3000", "https://telesana-rho.vercel.app"],
     methods:["GET","POST","PUT","DELETE"],
+    credentials: true
 }))
 app.use(express.json())
 
