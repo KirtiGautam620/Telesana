@@ -37,7 +37,7 @@ export default function Chatbot() {
       const formData = new FormData();
       formData.append("msg", message);
 
-      const response = await fetch("http://localhost:5000/get", {
+      const response = await fetch("https://telesana.onrender.com/get", {
         method: "POST",
         body: formData,
       });

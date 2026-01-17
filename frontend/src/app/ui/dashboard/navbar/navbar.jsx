@@ -24,7 +24,7 @@ const Navbar = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/api/doctors`, {
+      const response = await fetch(`https://telesana.onrender.com/api/doctors`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
