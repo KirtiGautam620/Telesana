@@ -1,49 +1,39 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
-
 enum RiskLevel {
   LOW
   MEDIUM
   HIGH
 }
-
 enum AppointmentMode {
   VIDEO
   IN_PERSON
 }
-
 enum AppointmentStatus {
   SCHEDULED
   COMPLETED
   CANCELLED
 }
-
 enum gender {
   MALE
   FEMALE
   OTHER
 }
-
-
 model User {
   id        String    @id @default(uuid())
   username  String    @unique
   email     String    @unique
-  password  String    
+  password  String
   patient   Patient?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
-
-
 model Patient {
   id          String    @id @default(uuid())
   fullName    String
@@ -54,15 +44,13 @@ model Patient {
   weight      Int?
   bloodGroup  String?
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt 
+  updatedAt   DateTime  @updatedAt
   userId      String    @unique
   user        User      @relation(fields: [userId], references: [id])
   healthPassbook HealthPassbook?
   appointments   Appointment[]
   prescriptions  Prescription[]
 }
-
-
 model HealthPassbook {
   id          String        @id @default(uuid())
   patient     Patient       @relation(fields: [patientId], references: [id])
@@ -72,7 +60,6 @@ model HealthPassbook {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 }
-
 model Doctor {
   id             String            @id @default(uuid())
   doctor_name    String
@@ -84,7 +71,6 @@ model Doctor {
   appointments   Appointment[]
   prescription   Prescription[]
 }
-
 model Appointment {
   id              String            @id @default(uuid())
   patientId       String
@@ -97,7 +83,6 @@ model Appointment {
   prescriptions   Prescription[]
   createdAt       DateTime          @default(now())
 }
-
 model AppointmentSlot {
   id        String   @id @default(uuid())
   doctorId  String
@@ -106,7 +91,6 @@ model AppointmentSlot {
   endTime   DateTime
   isBooked  Boolean  @default(false)
 }
-
 model Prescription {
   id            String      @id @default(uuid())
   patientId     String
@@ -119,7 +103,6 @@ model Prescription {
   createdAt     DateTime    @default(now())
   reminders     Reminder[]
 }
-
 model Reminder {
   id             String       @id @default(uuid())
   prescriptionId String
