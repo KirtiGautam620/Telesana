@@ -9,7 +9,6 @@
     "seed": "node prisma/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -25,6 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.0.0",
     "multer": "^2.0.2",
+    "postgres": "^3.4.8",
     "prisma": "5.16.0",
     "validator": "^13.15.23"
   }
